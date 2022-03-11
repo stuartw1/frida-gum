@@ -31,7 +31,7 @@ TESTLIST_BEGIN (interceptor_darwin)
   TESTENTRY (attach_performance)
   TESTENTRY (replace_performance)
 
-#ifdef HAVE_IOS
+#if defined(HAVE_IOS) || defined(HAVE_TVOS)
   TESTENTRY (should_retain_code_signing_status)
   TESTENTRY (cydia_substrate_replace_performance)
 #endif
@@ -445,8 +445,7 @@ dummy_replacement_never_called (void)
 {
 }
 
-#ifdef HAVE_IOS
-
+#if defined(HAVE_IOS) || defined(HAVE_TVOS)
 #define CS_OPS_STATUS 0
 #define CS_VALID 0x0000001
 

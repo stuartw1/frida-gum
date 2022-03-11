@@ -96,6 +96,10 @@ if host_os == 'ios'
   extra_link_args += ['-Wl,-framework,Foundation']
 endif
 
+if host_os == 'tvos'
+  extra_link_args += ['-Wl,-framework,Foundation']
+endif
+
 runner = executable(runner_name, runner_sources + [test_data_stamp],
   link_with: link_targets,
   dependencies: [gum_dep, gum_heap_dep, gum_prof_dep, tls_provider_dep, threads_dep] + extra_test_deps,

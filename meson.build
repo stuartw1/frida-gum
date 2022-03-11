@@ -95,6 +95,16 @@ if cc.compiles(is_ios_src, name: 'compiling for iOS')
   host_os = 'ios'
 endif
 
+is_tvos_src = target_conditionals_prefix + '''
+#if !TARGET_OS_TVOS
+# error Not tvOS
+#endif
+'''
+if cc.compiles(is_tvos_src, name: 'compiling for tvOS')
+  host_os = 'tvos'
+endif
+
+
 if cc.has_header('android/api-level.h')
   host_os = 'android'
 endif

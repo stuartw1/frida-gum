@@ -7,6 +7,7 @@ sources := \
 	$(NULL)
 
 ios_cc := $(shell xcrun --sdk iphoneos -f clang)
+tvos_cc := $(shell xcrun --sdk appletvos -f clang)
 cflags := -Wall -Werror -pipe -Oz -g
 ldflags := -Wl,-dead_strip
 
@@ -27,5 +28,21 @@ build/%.dylib: %.c $(sources)
 		-dynamiclib \
 		-nostdlib \
 		$(ldflags)
+
+build/%.dylib: %.c $(sources)
+        @mkdir -p $(@D)
+        $(tvos_cc) \
+                -isysroot $(shell xcrun --sdk appletvos --show-sdk-path) \
+                -arch arm64e \
+                $(cflags) \
+                -fno-ptrauth-calls \
+                -fno-ptrauth-returns \
+                -fno-stack-check \
+                -fno-stack-protector \
+                $< \
+                -o $@ \
+                -dynamiclib \
+                -nostdlib \
+                $(ldflags)
 
 .PHONY: build

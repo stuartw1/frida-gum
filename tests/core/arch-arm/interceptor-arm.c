@@ -7,14 +7,14 @@
 #include "interceptor-arm-fixture.c"
 
 TESTLIST_BEGIN (interceptor_arm)
-#ifndef HAVE_IOS
+#if !defined (HAVE_IOS) && !(defined (HAVE_TVOS)
   TESTENTRY (attach_to_unaligned_function)
 #endif
   TESTENTRY (attach_to_thumb_thunk_reading_lr)
   TESTENTRY (attach_to_thumb_function_reading_lr)
 TESTLIST_END ()
 
-#ifndef HAVE_IOS
+#if !defined (HAVE_IOS) && !(defined (HAVE_TVOS)
 
 /*
  * XXX: Although this problem also applies to iOS we don't want to run this

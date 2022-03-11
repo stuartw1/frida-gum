@@ -906,7 +906,7 @@ gum_kernel_get_task (void)
 static mach_port_t
 gum_kernel_do_init (void)
 {
-#ifdef HAVE_IOS
+#if defined(HAVE_IOS) || defined(HAVE_TVOS)
   mach_port_t task = MACH_PORT_NULL;
 
   task_for_pid (mach_task_self (), 0, &task);

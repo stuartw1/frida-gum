@@ -48,6 +48,9 @@
 /* Define to 1 if OS is iOS. */
 #mesondefine HAVE_IOS
 
+/* Define to 1 if OS is tvOS. */
+#mesondefine HAVE_TVOS
+
 /* Define to 1 if mcontext_t is legacy-style. */
 #mesondefine HAVE_LEGACY_MCONTEXT
 

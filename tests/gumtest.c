@@ -38,7 +38,7 @@
 # include <dlfcn.h>
 #endif
 
-#ifdef HAVE_IOS
+#if defined(HAVE_IOS) || defined(HAVE_TVOS)
 # include <unistd.h>
 #endif
 
@@ -152,7 +152,7 @@ main (gint argc, gchar * argv[])
   }
 #endif
 
-#ifdef HAVE_IOS
+#if defined(HAVE_IOS) || defined(HAVE_TVOS)
   if (g_file_test ("/usr/lib/libjailbreak.dylib", G_FILE_TEST_EXISTS))
   {
     void * module;
@@ -264,7 +264,7 @@ main (gint argc, gchar * argv[])
 #endif
 
   /* Prof */
-#if !defined (HAVE_IOS) && !(defined (HAVE_ANDROID) && defined (HAVE_ARM64))
+#if !defined (HAVE_IOS) && !(defined (HAVE_ANDROID) && !defined(HAVE_TVOS) && defined (HAVE_ARM64))
   TESTLIST_REGISTER (sampler);
 #endif
 #ifdef HAVE_WINDOWS

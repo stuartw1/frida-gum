@@ -17,6 +17,10 @@ if [ -z "$IOS_CERTID" ]; then
   IOS_CERTID="-"
 fi
 
+if [ -z "$TVOS_CERTID" ]; then
+  TVOS_CERTID="-"
+fi
+
 rm -f "$signed_runner_binary"
 cp "$runner_binary" "$signed_runner_binary"
 
@@ -26,5 +30,8 @@ case $host_os in
     ;;
   ios)
     "$CODESIGN" -f -s "$IOS_CERTID" --entitlements "$runner_entitlements" "$signed_runner_binary" || exit 1
+    ;;
+  tvos)
+    "$CODESIGN" -f -s "$TVOS_CERTID" --entitlements "$runner_entitlements" "$signed_runner_binary" || exit 1
     ;;
 esac

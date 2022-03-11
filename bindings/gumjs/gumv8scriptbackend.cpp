@@ -24,7 +24,7 @@
 #define GUM_V8_SCRIPT_BACKEND_GET_ISOLATE(backend) \
     ((Isolate *) gum_v8_script_backend_get_isolate (backend))
 
-#ifdef HAVE_IOS
+#if define (HAVE_IOS) || define (HAVE_TVOS)
 # define GUM_V8_PLATFORM_FLAGS \
     "--write-protect-code-memory " \
     "--wasm-write-protect-code-memory "

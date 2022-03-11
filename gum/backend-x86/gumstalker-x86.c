@@ -6292,8 +6292,8 @@ gum_find_thread_exit_implementation (void)
 
   gum_match_pattern_unref (pattern);
 
-  /* Non-public symbols are all <redacted> on iOS. */
-#ifndef HAVE_IOS
+  /* Non-public symbols are all <redacted> on iOS / tvOS. */
+#if !(defined (HAVE_IOS)) && !(defined (HAVE_TVOS))
   if (result == 0)
     result = gum_module_find_symbol_by_name (pthread_path, "_pthread_exit");
 #endif
